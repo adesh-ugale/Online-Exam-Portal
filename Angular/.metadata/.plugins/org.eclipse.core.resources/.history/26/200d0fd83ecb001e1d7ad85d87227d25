@@ -1,0 +1,53 @@
+package com.tka.controller;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.tka.entity.User;
+
+@RestController
+@CrossOrigin("http://localhost:4200")
+public class ResetPasswordController {
+	
+	
+
+		
+	
+
+	@Autowired
+	SessionFactory factory;
+	
+	@PostMapping("resetPassword")
+	public String resetPassword(@RequestBody User userDB)
+	{
+		try
+		{
+			Session session=factory.openSession();
+			String s1=userDB.getPassword();
+			String s2=userDB.getEmailid();
+			System.out.println(s1);
+			System.out.println(s2);
+			if(s1.equals(s2))
+			{
+				User user=session.get(User.class,userDB.getUsername());
+				user.setPassword(userDB.getPassword());
+				return "true";
+			}
+			return "false";
+			
+		
+		}
+		
+		catch(Exception e)
+		{
+			return "true";
+		}
+
+	}
+
+}

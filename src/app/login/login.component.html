@@ -1,0 +1,16 @@
+<body>
+    <div class="container">
+        <p>Sign In</p>
+       <h1>ExamPortal</h1>
+       <h3>.com</h3>
+        <!-- <i class="fa-solid fa-house"></i> -->
+        <form>
+            <input type="text" placeholder="Username" [(ngModel)]="userDB.username" name="username">
+            <input type="password" placeholder="Password" [(ngModel)]="userDB.password" name="password">
+            <span><a (click)="onForgetPassword()" style="color:blue;">Forget Password?</a></span>
+        </form>
+        <button type="button" (click)="onLogin()">Login</button>
+        <h4>Don't have an account?<a (click)="onRegister()" style="color:blue;"> Sign Up</a></h4>
+    </div>
+    
+</body>

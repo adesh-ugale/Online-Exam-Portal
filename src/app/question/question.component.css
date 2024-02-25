@@ -1,0 +1,30 @@
+input{
+    border:0;
+    font-size:15px;
+}
+.questionForm{
+    /* margin-top:15px; */
+    margin-left:15px;
+}
+body{
+    margin-top:50px;
+    margin-left:40px;
+}
+#button{
+    margin-left:-30px;
+}
+#a{
+    background-color:aqua;
+    margin:5px;
+    padding:5px;
+    border-radius:5px;
+}
+#a:hover{
+    background-color:burlywood;
+}
+p{
+    margin-top:15px; 
+    position:relative;
+    margin-left:80%;
+    margin-bottom:15px;
+}

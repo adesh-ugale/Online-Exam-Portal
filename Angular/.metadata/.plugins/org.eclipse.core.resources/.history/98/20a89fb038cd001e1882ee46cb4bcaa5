@@ -1,0 +1,49 @@
+package com.tka.controller;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.tka.entity.User;
+
+@RestController
+@CrossOrigin("http://localhost:4200")
+public class LoginController {
+	
+
+	@Autowired
+	SessionFactory factory;
+	
+	static 
+	
+	@PostMapping("validate")
+	public Boolean validate(@RequestBody User userfrombrowser)
+	{
+		System.out.println("user from browser " + userfrombrowser);
+		
+		Session session=factory.openSession();
+		
+		User userfromdatabase=session.get(User.class,userfrombrowser.getUsername());
+		
+		if(userfromdatabase==null)
+		{
+			return false;
+		}
+	
+		System.out.println("user from database " +userfromdatabase);
+		
+		boolean answer=userfrombrowser.equals(userfromdatabase);
+				
+		System.out.println("answer from equals() of Object class is " + answer);
+		
+		return answer;
+		
+	
+		
+	}
+
+}

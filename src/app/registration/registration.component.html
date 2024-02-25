@@ -1,0 +1,13 @@
+<body>
+    <div class="container">
+        <i class="fa-regular fa-registered fa-2x"></i>
+        <h2>Sign UP</h2>
+        <form>
+            <input type="text" placeholder="Username" [(ngModel)]="user.username" name="username">
+            <input type="text" placeholder="Password" [(ngModel)]="user.password" name="password">
+            <input type="text" placeholder="Mobile No" [(ngModel)]="user.mobno" name="mobno">
+            <input type="text" placeholder="Email Id" [(ngModel)]="user.emailid" name="emailid">
+            <button type="button" (click)="onRegister()">Sign Up</button>
+        </form>
+    </div>
+</body>

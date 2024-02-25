@@ -1,0 +1,9 @@
+<body>
+    <div class="container">
+        <h2>Reset Password</h2>
+        <h5>Please enter your new password and confirm password</h5>
+       <input type="password" placeholder="New Password" [(ngModel)]="userDB.password1" name="password">
+       <input type="password" placeholder="Confirm New Password" [(ngModel)]="userDB.password2" name="password">
+       <button type="button" (click)="update()">Login</button>
+    </div>
+</body>

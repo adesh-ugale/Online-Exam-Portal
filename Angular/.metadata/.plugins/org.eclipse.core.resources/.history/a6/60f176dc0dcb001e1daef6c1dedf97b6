@@ -1,0 +1,107 @@
+package com.tka.Controller;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.tka.Entity.User;
+
+@RestController
+@CrossOrigin("http://localhost:4200")
+public class LoginController {
+	
+	@Autowired
+	SessionFactory factory;
+	UserFromBrower userFromBrower=new UserFromBrower();
+//	User user;
+	
+	@PostMapping("getUser")
+	public String getUser(@RequestBody UserFromBrower userFromBrower)
+	{
+		try
+		{
+			Session session=factory.openSession();
+			User user=session.get(User.class,userFromBrower.getUsername());
+			if(userFromBrower.getPassword().equals(user.getPassword()))
+			{
+				return "true";
+			}
+			return "false";
+		}
+		catch(Exception e)
+		{
+			return "null";
+		}
+
+	}
+	
+	@PostMapping("saveToDB")
+	public boolean saveToDB(@RequestBody User user)
+	{
+		System.out.println(user);
+		Session session=factory.openSession();
+		Transaction tx=session.beginTransaction();
+		
+		session.persist(user);
+		
+		tx.commit();
+		
+		return true;
+		
+	}
+	
+	@GetMapping("forgetPassword/{username}")
+	public boolean forgetPassword(@PathVariable String username)
+	{
+		try
+		{
+			Session session=factory.openSession();
+			User user=session.get(User.class,username);
+			if(user==null)
+			{
+				return false;
+			}
+			return true;
+		}
+		
+		catch(Exception e)
+		{
+			return false;
+		}
+
+	}
+	
+	@PostMapping("resetPassword")
+	public boolean resetPassword(@RequestBody User userDB)
+	{
+		try
+		{
+			Session session=factory.openSession();
+			System.out.println(userDB.getPassword());
+			System.out.println(userDB.getEmailid());
+			if((userDB.getPassword()).equals(userDB.getEmailid()))
+			{
+				User user=session.get(User.class,userDB.getUsername());
+				user.setPassword(userDB.getPassword());
+				return true;
+			}
+			return false;
+		
+		}
+		
+		catch(Exception e)
+		{
+			return false;
+		}
+
+	}
+	
+
+}

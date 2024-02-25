@@ -1,0 +1,16 @@
+package com.tka.entity;
+
+public class Reset {
+	
+	String username;
+	String password1;
+	String password2;
+	
+	
+	
+	
+	
+	
+	
+
+}

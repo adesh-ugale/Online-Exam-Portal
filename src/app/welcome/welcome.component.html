@@ -1,0 +1,13 @@
+<div id="welcome">Welcome {{username}}</div>
+<form class="container">
+<label>Select your subject:</label><br><br>
+<select name="subject" [(ngModel)]="subject">
+
+    <option value="java">Java</option>
+
+    <option value="maths">Math</option>
+
+</select>
+<br><br>
+<button type="button" (click)="onStart()">Start Exam</button>
+</form>

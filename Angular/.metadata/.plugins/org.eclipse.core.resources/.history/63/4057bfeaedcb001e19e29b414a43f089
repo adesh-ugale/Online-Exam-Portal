@@ -1,0 +1,68 @@
+package com.tka.controller;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.tka.entity.Question;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
+@RestController
+@CrossOrigin("http://localhost:4200")
+public class QuestionController {
+	
+	@Autowired
+	SessionFactory factory;
+	
+	@GetMapping("getFirstQuestion/{subject}")
+	public Question getFirstQuestion(@PathVariable String subject,HttpServletRequest request)
+	{
+		HttpSession httpSession=request.getSession();
+		Session session=factory.openSession();
+		
+		Query query=session.createQuery("from Question where subject=:subject");
+		
+		query.setParameter("subjectName",subject);
+		
+		query.setParameter("subject",subject);
+		
+		
+		List<Question> list=query.list();
+		
+		httpSession.setAttribute("allQuestions", list);
+	
+			
+//		LinkedHashSet linkedhashset=(LinkedHashSet) query.list();
+//		
+//		HashSet set=linkedhashset;
+		
+//		Set<Question> set=(Set<Question>) query.list();
+
+		
+//		List<Question> list=new ArrayList<Question>(set);
+		
+		Question question=null;
+		
+		for(int i=0;i<list.lastIndexOf(list);i++)
+		{
+			question=list.get(i);	
+		}
+		
+//		Question question=list.get(i);	
+
+		return (Question) question;
+		}
+
+}

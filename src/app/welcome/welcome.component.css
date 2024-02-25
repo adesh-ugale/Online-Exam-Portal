@@ -1,0 +1,30 @@
+#welcome{
+    margin-top:15%;
+    color:red;
+    font-size:21px;
+    text-align:center;
+}
+.container{
+    margin-left:15px;
+    margin-top:20px;
+    text-align:center;
+}
+select{
+    /* padding:5px; */
+    padding-right:25px;
+    padding-left:25px;  
+    padding-top:5px;
+    padding-bottom:5px;  
+    border-radius:7px;
+    font-weight:5px;
+}
+button{
+    margin-top:25px;
+    padding:7px;
+    border-radius:7px;
+    font-size:15px;
+    font-weight:10px;
+}
+button:hover{
+    background-color:crimson;
+}

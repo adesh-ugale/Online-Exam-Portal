@@ -1,0 +1,10 @@
+button{
+    margin-top:25px;
+    padding:7px;
+    border-radius:7px;
+    font-size:15px;
+    font-weight:10px;
+}
+button:hover{
+    background-color:crimson;
+}
